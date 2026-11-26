@@ -74,7 +74,13 @@
 
         <div>
             <label class="block text-sm font-medium mb-1">Foto Produk (JPG/PNG/WEBP, Maks. 2MB)</label>
-            <input type="file" name="image" accept="image/*" class="w-full text-sm">
+            @if (isset($product) && $product->image_path)
+                <div class="mb-3 flex items-center gap-3">
+                    <img src="{{ asset($product->image_path) }}" alt="{{ $product->name }}" class="w-16 h-16 object-cover rounded-lg border border-[#E4E4DE]">
+                    <span class="text-xs text-[#575752]">Foto saat ini. Pilih file di bawah jika ingin menggantinya.</span>
+                </div>
+            @endif
+            <input type="file" name="image" accept="image/*" class="w-full text-sm" {{ isset($product) ? '' : 'required' }}>
             @error('image') <p class="mt-1 text-xs text-red-700">{{ $message }}</p> @enderror
         </div>
 

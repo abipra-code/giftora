@@ -34,6 +34,7 @@
         <table class="w-full text-left text-sm">
             <thead class="border-b border-[#E4E4DE] bg-[#F2F2EE] text-xs uppercase text-[#575752]">
                 <tr>
+                    <th class="px-4 py-3 w-16">Foto</th>
                     <th class="px-4 py-3">Produk</th>
                     <th class="px-4 py-3">Kategori</th>
                     <th class="px-4 py-3 text-right">Harga</th>
@@ -44,6 +45,9 @@
             <tbody class="divide-y divide-[#E4E4DE]">
                 @forelse ($products as $product)
                     <tr class="hover:bg-[#FAFAF8] transition">
+                        <td class="px-4 py-3">
+                            <img src="{{ asset($product->image_path) }}" alt="{{ $product->name }}" class="w-12 h-12 object-cover rounded-lg border border-[#E4E4DE] bg-gray-50">
+                        </td>
                         <td class="px-4 py-3 font-medium text-[#18181B]">{{ $product->name }}</td>
                         <td class="px-4 py-3 text-[#575752]">{{ $product->category->name }}</td>
                         <td class="px-4 py-3 text-right tabular-nums font-medium">Rp {{ number_format($product->price, 0, ',', '.') }}</td>
@@ -59,7 +63,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="px-4 py-8 text-center text-xs text-[#71716A]">
+                        <td colspan="6" class="px-4 py-8 text-center text-xs text-[#71716A]">
                             Belum ada produk yang ditambahkan.
                         </td>
                     </tr>
